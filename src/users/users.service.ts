@@ -100,4 +100,8 @@ export class UsersService {
   async remove(user: User) {
     await this.userRepository.remove(user);
   }
+
+    async getCurrentUser({id}: User) {
+        return this.findOne(id, true);
+    }
 }

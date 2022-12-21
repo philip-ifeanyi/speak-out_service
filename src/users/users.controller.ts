@@ -1,7 +1,7 @@
 import {
   Body,
   Controller,
-  Delete,
+  Delete, Get,
   Patch,
   Post,
   UseGuards,
@@ -23,6 +23,14 @@ export class UsersController {
     const data = await this.usersService.create(createUserDto);
 
     return { message: 'User created successfully', data };
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  async getCurrentUser(@RequestUser() user: User) {
+    const data = await this.usersService.getCurrentUser(user);
+
+    return {message: 'Current user details', data}
   }
 
   @UseGuards(JwtAuthGuard)

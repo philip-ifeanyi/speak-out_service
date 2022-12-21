@@ -24,7 +24,7 @@ export class AuthService {
     const payload: JwtPayloadDto = {
       sub: user.id,
       username: user.email,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
     };
     const extras =
       !user.isAdmin && !user.matricOrStaffNumber ? { firstTime: true } : {};
@@ -36,6 +36,7 @@ export class AuthService {
         lastName: user.lastName,
         email: user.email,
         matricOrStaffNumber: user.matricOrStaffNumber,
+        department: user.department,
       },
       ...extras,
     };
